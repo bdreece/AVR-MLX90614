@@ -66,7 +66,38 @@ $(function() {
   <div class="headertitle"><div class="title">AVR-MLX90614 </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p ><a class="anchor" id="md_README"></a>A simple AVR library for the Melexis MLX90614 </p>
+<div class="textblock"><p ><a class="anchor" id="md_README"></a>A simple AVR library for the Melexis MLX90614 non-contact infrared temperature sensor.</p>
+<h2><a class="anchor" id="autotoc_md4"></a>
+Table of Contents</h2>
+<ul>
+<li><a href="#dependencies">Dependencies</a></li>
+<li><a href="#building">Building</a></li>
+<li><a href="#demo">Demo</a></li>
+<li><a href="#credits">Credits</a></li>
+</ul>
+<hr  />
+<h4><a class="anchor" id="autotoc_md6"></a>
+Dependencies</h4>
+<p >In order to build this library, you must have the following applications installed on your system:</p>
+<ul>
+<li>make</li>
+<li>avr-g++</li>
+<li>avr-binutils</li>
+<li>avr-libc</li>
+</ul>
+<h4><a class="anchor" id="autotoc_md7"></a>
+Building</h4>
+<p >When building this project, use the included Makefile by invoking the following command in your terminal:</p>
+<p ><code>make</code></p>
+<p >Upon completion, lib/libMLX90614.a will have been generated!</p>
+<h4><a class="anchor" id="autotoc_md8"></a>
+Demo</h4>
+<p >Included with the source for this library is a small demo application that can be built using the following command:</p>
+<p ><code>make all</code></p>
+<p >Upon completion, bin/MLX90614_demo.hex will have been generated! This file can be flashed onto the AVR of your choice using avrdude or some alternative.</p>
+<h4><a class="anchor" id="autotoc_md9"></a>
+Credits</h4>
+<p >Big thanks to <a href="https://github.com/scttnlsn">scttnlsn</a> for the AVR TWI HAL. The rest of the code has been written by me and is licensed using the GPLv2 license. Note that this software comes with NO WARRANTY and I am NOT LIABLE for any problems with the software. With that being said, feel free to submit issues as they are encountered. </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 <!-- start footer part -->
