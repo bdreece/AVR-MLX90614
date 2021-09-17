@@ -11,6 +11,8 @@
 
 using namespace mlx90614;
 
+/***** STATIC STRUCTS *****/
+
 const struct commands MLX90614::CMDS = {
   .CMD_RAM_ACCESS = 0x00,
   .CMD_EEP_ACCESS = 0x10,
@@ -41,8 +43,11 @@ const struct flags MLX90614::FLAGS = {
   .INIT           = 0x10,
 };
 
-MLX90614::MLX90614()
+/***** PUBLIC METHODS *****/
+
+MLX90614::MLX90614(uint8_t addr)
 {
+  this->addr = addr;
 
 }
 
@@ -124,4 +129,21 @@ bool MLX90614::is_eep_dead()
 bool MLX90614::is_init()
 {
   return false;
+}
+
+/***** PRIVATE METHODS *****/
+
+uint16_t MLX90614::read_ram(uint8_t addr)
+{
+  return 0;
+}
+
+uint16_t MLX90614::read_eep(uint8_t addr)
+{
+  return 0;
+}
+
+uint16_t MLX90614::read_flags()
+{
+  return 0;
 }
