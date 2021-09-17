@@ -50,7 +50,7 @@ namespace mlx90614
   class MLX90614
   {
     public:
-      MLX90614();
+      MLX90614(uint8_t addr);
       ~MLX90614();
       
       float get_ambient_temp_c();
@@ -75,10 +75,14 @@ namespace mlx90614
       bool is_init();
 
     private:
+      uint8_t addr;
       static const struct commands CMDS;
       static const struct ram_addrs RAM;
       static const struct eep_addrs EEP;
       static const struct flags FLAGS;
+      uint16_t read_ram(uint8_t addr);
+      uint16_t read_eep(uint8_t addr);
+      uint16_t read_flags();
   };
 }
 

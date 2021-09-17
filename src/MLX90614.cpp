@@ -48,7 +48,7 @@ const struct flags MLX90614::FLAGS = {
 MLX90614::MLX90614(uint8_t addr)
 {
   this->addr = addr;
-
+  
 }
 
 MLX90614::~MLX90614()

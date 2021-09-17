@@ -1,12 +1,12 @@
 MMCU 		:= atmega328p
 
 CC			:= avr-g++
-FLAGS		:= -Wall -Werror -g -Os
+FLAGS		:= -Wall -g -Os
 CFLAGS	:= -I./inc
-MFLAGS	:= -mmcu=$(MMCU)
-LFLAGS	:= -L./lib -lMLX90614
+MFLAGS	:= -D F_CPU=1000000 -funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums -mmcu=$(MMCU)
+LFLAGS	:= -L./lib
 
-AR			:= avr-ar rcs
+AR			:= avr-ar ru --target=ihex
 OBJCPY	:= avr-objcopy -j .text -j .data -O ihex
 OBJS		:= $(patsubst src/%.cpp, %.o, $(wildcard src/*.cpp))
 
@@ -16,8 +16,13 @@ default: lib/libMLX90614.a clean
 
 all: lib/libMLX90614.a bin/MLX90614_demo.hex clean
 
-%.o: src/%.cpp
-	$(CC) $(FLAGS) $(CFLAGS) -c -o $@ $<
+%.o: src/%.cpp lib/libtwi.a
+	$(CC) $(FLAGS) $(CFLAGS) $(LFLAGS) -c -o $@ $< -ltwi
+
+lib/libtwi.a: lib/avr-twi/twi.c
+	$(CC) $(FLAGS) $(CFLAGS) $(MFLAGS) -c -o lib/avr-twi/twi.o $<
+	$(AR) $@ lib/avr-twi/twi.o 
+
 
 lib/libMLX90614.a: $(OBJS)
 	mkdir -p lib
@@ -25,11 +30,11 @@ lib/libMLX90614.a: $(OBJS)
 
 bin/MLX90614_demo.hex: lib/libMLX90614.a
 	mkdir -p bin/
-	$(CC) $(FLAGS) $(CFLAGS) $(MFLAGS) -o bin/main.elf demo/main.cpp $(LFLAGS)
+	$(CC) $(FLAGS) $(CFLAGS) $(MFLAGS) $(LFLAGS) -o bin/main.elf demo/main.cpp -lMLX90614
 	$(OBJCPY) bin/main.elf $@
 
 clean:
 	rm -f *.o bin/main.elf
 
 remove:
-	rm -rf bin lib
+	rm -rf bin lib/libMLX90614.a
