@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['commands_0',['commands',['../structmlx90614_1_1commands.html',1,'mlx90614']]]
+  ['mlx90614_0',['MLX90614',['../classmlx90614_1_1MLX90614.html',1,'mlx90614']]]
 ];

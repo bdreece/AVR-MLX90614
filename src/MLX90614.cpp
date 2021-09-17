@@ -5,145 +5,256 @@
  * @date 09/16/2021
  */
 
+#include <stddef.h>
+#include <math.h>
+
 #ifndef MLX90614_H
 #include "MLX90614.hpp"
 #endif
 
-using namespace mlx90614;
+#ifndef TWI_H
+#include "twi.h"
+#endif
 
-/***** STATIC STRUCTS *****/
+/***** STATIC VARIABLES *****/
+static uint8_t CMD_READ_FLAGS = 0xF0;
+static uint8_t CMD_SLEEP_MODE = 0xFF;
+static uint8_t RAM_IR_CH_1 =    0x04;
+static uint8_t RAM_IR_CH_2 =    0x05;
+static uint8_t RAM_T_AMB =      0x06;
+static uint8_t RAM_T_OBJ1 =     0x07;
+static uint8_t RAM_T_OBJ2 =     0x08;
+static uint8_t EEP_T_O_MAX =    0x10;
+static uint8_t EEP_T_O_MIN =    0x11;
+static uint8_t EEP_T_A_RANGE =  0x13;
+static uint8_t EEP_EMISSIVITY = 0x14;
+static uint8_t EEP_CONF_REG_1 = 0x15;
+static uint8_t EEP_SMBUS_ADDR = 0x1E;
+static uint8_t FLAG_EEBUSY =    0x80;
+static uint8_t FLAG_EEDEAD =    0x20;
+static uint8_t FLAG_INIT =      0x10;
+uint8_t mlx90614::MLX90614::raddr;
+uint8_t mlx90614::MLX90614::waddr;
+float mlx90614::MLX90614::t_amb;
+float mlx90614::MLX90614::t_obj1;
+float mlx90614::MLX90614::t_obj2;
+float mlx90614::MLX90614::t_o_min;
+float mlx90614::MLX90614::t_o_max;
+double mlx90614::MLX90614::emissivity;
 
-const struct commands MLX90614::CMDS = {
-  .CMD_RAM_ACCESS = 0x00,
-  .CMD_EEP_ACCESS = 0x10,
-  .CMD_READ_FLAGS = 0xF0,
-  .CMD_SLEEP_MODE = 0xFF,
-};
-
-const struct ram_addrs MLX90614::RAM = {
-  .RAM_IR_CH_1    = 0x04,
-  .RAM_IR_CH_2    = 0x05,
-  .RAM_T_AMB      = 0x06,
-  .RAM_T_OBJ1     = 0x07,
-  .RAM_T_OBJ2     = 0x08,
-};
-
-const struct eep_addrs MLX90614::EEP = {
-  .T_O_MAX        = 0x00,
-  .T_O_MIN        = 0x01,
-  .T_A_RANGE      = 0x03,
-  .EMISSIVITY     = 0x04,
-  .CONF_REG_1     = 0x05,
-  .SMBUS_ADDR     = 0x0E,
-};
-
-const struct flags MLX90614::FLAGS = {
-  .EEBUSY         = 0x80,
-  .EEDEAD         = 0x20,
-  .INIT           = 0x10,
-};
 
 /***** PUBLIC METHODS *****/
 
-MLX90614::MLX90614(uint8_t addr)
+mlx90614::MLX90614::MLX90614(uint8_t addr)
 {
-  this->addr = addr;
-  
+  mlx90614::MLX90614::raddr = (addr << 1) | 1;
+  mlx90614::MLX90614::waddr = addr << 1;
+  twi_init();
 }
 
-MLX90614::~MLX90614()
+mlx90614::MLX90614::~MLX90614()
 {
-
+  mlx90614::MLX90614::raddr = 0;
+  mlx90614::MLX90614::waddr = 0;
 }
 
-float MLX90614::get_ambient_temp_c()
+float mlx90614::MLX90614::get_ambient_temp(enum mlx90614::units unit)
 {
-  return 0.0;
+  // Send command to read from T_a address in RAM
+  twi_write(waddr, &RAM_T_AMB, 1, NULL);
+  twi_wait();
+
+  // Read value into buffer as floating point Kelvin
+  twi_read(raddr, 3, [](uint8_t addr, uint8_t *data)
+  {
+    mlx90614::MLX90614::t_amb = (float)(*data | *(data + 1) << 7) / 50; 
+  });
+
+  // Convert to desired unit  
+  return get_temp_from_k(t_amb, unit);
 }
 
-float MLX90614::get_ambient_temp_f()
+float mlx90614::MLX90614::get_obj1_temp(enum mlx90614::units unit)
 {
-  return 0.0;
+  // Send command to read from T_obj1 address in RAM
+  twi_write(waddr, &RAM_T_OBJ1, 1, NULL);
+  twi_wait();
+
+  // Read value into buffer as floating point Kelvin
+  twi_read(raddr, 3, [](uint8_t addr, uint8_t *data)
+  {
+    mlx90614::MLX90614::t_obj1 = (float)(*data | *(data + 1) << 7) / 50;
+  });
+
+  // Convert to desired unit
+  return get_temp_from_k(t_obj1, unit);
 }
 
-float MLX90614::get_obj1_temp_c()
+float mlx90614::MLX90614::get_obj2_temp(enum mlx90614::units unit)
 {
-  return 0.0;
+  // Send command to read from T_obj2 address in RAM
+  twi_write(waddr, &RAM_T_OBJ2, 1, NULL);
+  twi_wait();
+
+  // Read value into buffer as floating point Kelvin
+  twi_read(raddr, 3, [](uint8_t addr, uint8_t *data)
+  {
+    mlx90614::MLX90614::t_obj2 = (float)(*data | *(data + 1) << 7) / 50;
+  });
+
+  // Convert to desired unit
+  return get_temp_from_k(t_obj2, unit);
 }
 
-float MLX90614::get_obj1_temp_f()
+float mlx90614::MLX90614::get_temp_max(enum mlx90614::units unit)
 {
-  return 0.0;
+  // Send command to read from T_O_max address in EEPROM
+  twi_write(waddr, &EEP_T_O_MAX, 1, NULL);
+  twi_wait();
+
+  // Read value into buffer as floating point Kelvin
+  twi_read(raddr, 3, [](uint8_t addr, uint8_t *data)
+  {
+    mlx90614::MLX90614::t_o_max = (float)(*data | *(data + 1) << 7) / 100;
+  });
+
+  // Convert to desired unit
+  return get_temp_from_k(t_o_max, unit);
 }
 
-float MLX90614::get_obj2_temp_c()
+int8_t mlx90614::MLX90614::set_temp_max(float value, enum mlx90614::units unit)
 {
-  return 0.0;
-}
+  value = get_k_from_temp(value, unit);
 
-float MLX90614::get_obj2_temp_f()
-{
-  return 0.0;
-}
+  if (value < 0.0 || value > 109.05)
+    return -1;
 
-float MLX90614::get_temp_max()
-{
-  return 0.0;
-}
-
-void MLX90614::set_temp_max(float value)
-{
-
-}
-
-float MLX90614::get_temp_min()
-{
-  return 0.0;
-} 
-
-void MLX90614::set_temp_min(float value)
-{
-
-}
-
-uint8_t MLX90614::get_smbus_addr()
-{
+  eep_write(EEP_T_O_MAX, (uint16_t)(value * 100));
   return 0;
 }
 
-void MLX90614::set_smbus_addr(uint8_t value)
+float mlx90614::MLX90614::get_temp_min(enum mlx90614::units unit)
 {
+  // Send command to read from T_O_min address in EEPROM
+  twi_write(waddr, &EEP_T_O_MIN, 1, NULL);
+  twi_wait();
 
+  // Read value into buffer as floating point Kelvin
+  twi_read(raddr, 3, [](uint8_t addr, uint8_t *data)
+  {
+    mlx90614::MLX90614::t_o_min = (float)(*data | *(data + 1) << 7) / 100;
+  });
+
+  // Convert to desired unit
+  return get_temp_from_k(t_o_min, unit);
+} 
+
+int8_t mlx90614::MLX90614::set_temp_min(float value, enum mlx90614::units unit)
+{
+  value = get_k_from_temp(value, unit);
+
+  if (value < 0.0 || value > 109.05)
+    return -1;
+
+  eep_write(EEP_T_O_MIN, (uint16_t)(value * 100));
+  return 0;
 }
 
-bool MLX90614::is_eep_busy()
+double mlx90614::MLX90614::get_emissivity()
+{
+  // Send command to read from EMISSIVITY address in EEPROM
+  twi_write(waddr, &EEP_EMISSIVITY, 1, NULL);
+  twi_wait();
+
+  twi_read(raddr, 3, [](uint8_t addr, uint8_t *data)
+  {
+    mlx90614::MLX90614::emissivity = (double)(*data | *(data + 1) << 7) / 65535;
+  });
+
+  return emissivity;
+}
+
+int8_t mlx90614::MLX90614::set_emissivity(double value)
+{
+  if (value < 0.0 || value > 1.0)
+    return -1;
+
+  uint16_t e = (uint16_t)round(value * 65535);
+  eep_write(EEP_EMISSIVITY, e);
+  return 0;
+}
+
+uint8_t mlx90614::MLX90614::get_smbus_addr()
+{
+  // Send command to read SMBUS_ADDR address from EEPROM
+  twi_write(waddr, &EEP_SMBUS_ADDR, 1, NULL);
+  twi_wait();
+
+  // Read value into raddr and wadder as uint8_t
+  twi_read(raddr, 3, [](uint8_t addr, uint8_t *data)
+  {
+    mlx90614::MLX90614::waddr = *data << 1;
+    mlx90614::MLX90614::raddr = (*data << 1) | 1;
+  });
+
+  return mlx90614::MLX90614::waddr >> 1;
+}
+int8_t mlx90614::MLX90614::set_smbus_addr(uint8_t value)
+{
+  // Greatest possible 7-bit TWI address
+  if (value > 0x7F)
+    return -1;
+
+  eep_write(EEP_SMBUS_ADDR, (uint16_t)value);
+  return 0;
+}
+
+bool mlx90614::MLX90614::is_eep_busy()
 {
   return false;
 }
 
-bool MLX90614::is_eep_dead()
+bool mlx90614::MLX90614::is_eep_dead()
 {
   return false;
 }
 
-bool MLX90614::is_init()
+bool mlx90614::MLX90614::is_init()
 {
   return false;
 }
 
 /***** PRIVATE METHODS *****/
 
-uint16_t MLX90614::read_ram(uint8_t addr)
+float mlx90614::MLX90614::get_temp_from_k(float temp_k, enum mlx90614::units unit)
 {
-  return 0;
+  if (unit == mlx90614::CELSIUS)
+    return temp_k - 273.15;
+  else if (unit == mlx90614::FAHRENHEIT)
+    return (temp_k * 1.8) - 459.67;
+  else // unit == mlx90614::KELVIN
+    return temp_k;
 }
 
-uint16_t MLX90614::read_eep(uint8_t addr)
+float mlx90614::MLX90614::get_k_from_temp(float value, enum mlx90614::units unit)
 {
-  return 0;
+  if (unit == mlx90614::CELSIUS)
+    return value + 273.15;
+  else if (unit == mlx90614::FAHRENHEIT)
+    return (value + 459.67) / 1.8;
+  else // unit == mlx90614::KELVIN
+    return value;
 }
 
-uint16_t MLX90614::read_flags()
+void mlx90614::MLX90614::eep_write(uint8_t addr, uint16_t value)
 {
-  return 0;
+  uint8_t zeros[2] = { 0x00, 0x00 };
+  uint8_t data[2] = { value & 0x00FF, value >> 7 };
+
+  twi_write(waddr, &addr, 1, NULL);
+  twi_wait();
+  twi_write(waddr, zeros, 2, NULL);
+  twi_wait();
+  twi_write(waddr, data, 2, NULL);
+  twi_wait();
 }

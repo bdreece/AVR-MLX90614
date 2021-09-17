@@ -13,9 +13,9 @@ using namespace mlx90614;
 
 int main()
 {
-  MLX90614 sensor = MLX90614(0x23);
+  MLX90614 sensor(0x23);
 
-  float val = sensor.get_ambient_temp_c();
+  float val = sensor.get_ambient_temp(mlx90614::CELSIUS);
   val = val + 1.0;
 
   return 0;

@@ -8,7 +8,7 @@ LFLAGS	:= -L./lib
 
 AR			:= avr-ar ru --target=ihex
 OBJCPY	:= avr-objcopy -j .text -j .data -O ihex
-OBJS		:= $(patsubst src/%.cpp, %.o, $(wildcard src/*.cpp))
+OBJS		:= $(patsubst src/%.cpp, %.o, $(wildcard src/*.cpp)) twi.o
 
 .PHONY: all clean
 
@@ -16,13 +16,11 @@ default: lib/libMLX90614.a clean
 
 all: lib/libMLX90614.a bin/MLX90614_demo.hex clean
 
-%.o: src/%.cpp lib/libtwi.a
-	$(CC) $(FLAGS) $(CFLAGS) $(LFLAGS) -c -o $@ $< -ltwi
+%.o: src/%.cpp
+	$(CC) $(FLAGS) $(CFLAGS) -c -o $@ $< -lm
 
-lib/libtwi.a: lib/avr-twi/twi.c
-	$(CC) $(FLAGS) $(CFLAGS) $(MFLAGS) -c -o lib/avr-twi/twi.o $<
-	$(AR) $@ lib/avr-twi/twi.o 
-
+twi.o: lib/avr-twi/twi.c
+	$(CC) $(FLAGS) $(CFLAGS) $(MFLAGS) -c -o $@ $<
 
 lib/libMLX90614.a: $(OBJS)
 	mkdir -p lib
