@@ -41,6 +41,9 @@ float mlx90614::MLX90614::t_obj2;
 float mlx90614::MLX90614::t_o_min;
 float mlx90614::MLX90614::t_o_max;
 double mlx90614::MLX90614::emissivity;
+bool mlx90614::MLX90614::eebusy;
+bool mlx90614::MLX90614::eedead;
+bool mlx90614::MLX90614::init;
 
 
 /***** PUBLIC METHODS *****/
@@ -211,17 +214,20 @@ int8_t mlx90614::MLX90614::set_smbus_addr(uint8_t value)
 
 bool mlx90614::MLX90614::is_eep_busy()
 {
-  return false;
+  get_flags();
+  return mlx90614::MLX90614::eebusy;
 }
 
 bool mlx90614::MLX90614::is_eep_dead()
 {
-  return false;
+  get_flags();
+  return mlx90614::MLX90614::eedead;
 }
 
 bool mlx90614::MLX90614::is_init()
 {
-  return false;
+  get_flags();
+  return mlx90614::MLX90614::init;
 }
 
 /***** PRIVATE METHODS *****/
@@ -257,4 +263,20 @@ void mlx90614::MLX90614::eep_write(uint8_t addr, uint16_t value)
   twi_wait();
   twi_write(waddr, data, 2, NULL);
   twi_wait();
+}
+
+void mlx90614::MLX90614::get_flags()
+{
+  // Send command to read flags
+  twi_write(waddr, &CMD_READ_FLAGS, 1, NULL);
+  twi_wait();
+
+  // Read value into buffers as booleans.
+  twi_read(raddr, 3, [](uint8_t addr, uint8_t *data)
+  {
+    uint16_t raw = *data | *(data + 1) << 7;
+    mlx90614::MLX90614::eebusy = raw & FLAG_EEBUSY != 0;
+    mlx90614::MLX90614::eedead = raw & FLAG_EEDEAD != 0;
+    mlx90614::MLX90614::init   = raw & FLAG_INIT   != 0;
+  });
 }

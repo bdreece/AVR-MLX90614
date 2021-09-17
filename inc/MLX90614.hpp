@@ -53,9 +53,11 @@ namespace mlx90614
       static uint8_t raddr, waddr;
       static float t_amb, t_obj1, t_obj2, t_o_min, t_o_max;
       static double emissivity;
+      static bool eebusy, eedead, init;
       float get_temp_from_k(float temp_k, enum units unit);
       float get_k_from_temp(float value, enum units unit);
       void eep_write(uint8_t addr, uint16_t value);
+      void get_flags();
   };
 }
 
