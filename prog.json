@@ -1,0 +1,5 @@
+{
+  "configure": "cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=generic-gcc-avr.cmake -B out -G Ninja .",
+  "build": "cd out; ninja -j8 -f build.ninja; cd ..;",
+  "docs": "doxygen"
+}

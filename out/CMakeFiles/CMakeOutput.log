@@ -1,0 +1,240 @@
+The target system is: Generic -  - avr
+The host system is: Linux - 5.14.12-arch1-1 - x86_64
+Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+Compiler: /usr/bin/avr-gcc 
+Build flags: 
+Id flags:  
+
+The output was:
+0
+
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
+
+The C compiler identification is GNU, found in "/home/bdreece/Code/github/bdreece/avr-mlx90614/out/CMakeFiles/3.21.3/CompilerIdC/a.out"
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+Compiler: /usr/bin/avr-g++ 
+Build flags: 
+Id flags:  
+
+The output was:
+0
+
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
+
+The CXX compiler identification is GNU, found in "/home/bdreece/Code/github/bdreece/avr-mlx90614/out/CMakeFiles/3.21.3/CompilerIdCXX/a.out"
+
+Detecting C compiler ABI info compiled with the following output:
+Change Dir: /home/bdreece/Code/github/bdreece/avr-mlx90614/out/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_03d75 && [1/2] Building C object CMakeFiles/cmTC_03d75.dir/CMakeCCompilerABI.c.obj
+Using built-in specs.
+Reading specs from /usr/lib/gcc/avr/11.2.0/device-specs/specs-avr2
+COLLECT_GCC=/usr/bin/avr-gcc
+Target: avr
+Configured with: /build/avr-gcc/src/gcc-11.2.0/configure --disable-install-libiberty --disable-libssp --disable-libstdcxx-pch --disable-libunwind-exceptions --disable-linker-build-id --disable-nls --disable-werror --disable-__cxa_atexit --enable-checking=release --enable-clocale=gnu --enable-gnu-unique-object --enable-gold --enable-languages=c,c++ --enable-ld=default --enable-lto --enable-plugin --enable-shared --infodir=/usr/share/info --libdir=/usr/lib --libexecdir=/usr/lib --mandir=/usr/share/man --prefix=/usr --target=avr --with-as=/usr/bin/avr-as --with-gnu-as --with-gnu-ld --with-ld=/usr/bin/avr-ld --with-plugin-ld=ld.gold --with-system-zlib --with-isl --enable-gnu-indirect-function
+Thread model: single
+Supported LTO compression algorithms: zlib zstd
+gcc version 11.2.0 (GCC) 
+COLLECT_GCC_OPTIONS='-O3' '-D' 'NDEBUG' '-v' '-o' 'CMakeFiles/cmTC_03d75.dir/CMakeCCompilerABI.c.obj' '-c' '-mdouble=32' '-mlong-double=64' '-specs=device-specs/specs-avr2' '-dumpdir' 'CMakeFiles/cmTC_03d75.dir/'
+ /usr/lib/gcc/avr/11.2.0/cc1 -quiet -v -D NDEBUG /usr/share/cmake-3.21/Modules/CMakeCCompilerABI.c -mn-flash=6 -mskip-bug -quiet -dumpdir CMakeFiles/cmTC_03d75.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mdouble=32 -mlong-double=64 -O3 -version -o /tmp/ccpKtOEq.s
+GNU C17 (GCC) version 11.2.0 (avr)
+	compiled by GNU C version 11.1.0, GMP version 6.2.1, MPFR version 4.1.0, MPC version 1.2.1, isl version isl-0.24-GMP
+
+warning: MPFR header version 4.1.0 differs from library version 4.1.0-p13.
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+ignoring nonexistent directory "/usr/lib/gcc/avr/11.2.0/../../../../avr/sys-include"
+#include "..." search starts here:
+#include <...> search starts here:
+ /usr/lib/gcc/avr/11.2.0/include
+ /usr/lib/gcc/avr/11.2.0/include-fixed
+ /usr/lib/gcc/avr/11.2.0/../../../../avr/include
+End of search list.
+GNU C17 (GCC) version 11.2.0 (avr)
+	compiled by GNU C version 11.1.0, GMP version 6.2.1, MPFR version 4.1.0, MPC version 1.2.1, isl version isl-0.24-GMP
+
+warning: MPFR header version 4.1.0 differs from library version 4.1.0-p13.
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+Compiler executable checksum: 90e2d9cdda96869ff5513b5bb6a12cd9
+COLLECT_GCC_OPTIONS='-O3' '-D' 'NDEBUG' '-v' '-o' 'CMakeFiles/cmTC_03d75.dir/CMakeCCompilerABI.c.obj' '-c' '-mdouble=32' '-mlong-double=64' '-specs=device-specs/specs-avr2' '-dumpdir' 'CMakeFiles/cmTC_03d75.dir/'
+ /usr/bin/avr-as -v -mmcu=avr2 -mgcc-isr -o CMakeFiles/cmTC_03d75.dir/CMakeCCompilerABI.c.obj /tmp/ccpKtOEq.s
+GNU assembler version 2.37 (avr) using BFD version (GNU Binutils) 2.37
+COMPILER_PATH=/usr/lib/gcc/avr/11.2.0/:/usr/lib/gcc/avr/11.2.0/:/usr/lib/gcc/avr/:/usr/lib/gcc/avr/11.2.0/:/usr/lib/gcc/avr/
+LIBRARY_PATH=/usr/lib/gcc/avr/11.2.0/:/usr/lib/gcc/avr/11.2.0/../../../../avr/lib/
+COLLECT_GCC_OPTIONS='-O3' '-D' 'NDEBUG' '-v' '-o' 'CMakeFiles/cmTC_03d75.dir/CMakeCCompilerABI.c.obj' '-c' '-mdouble=32' '-mlong-double=64' '-specs=device-specs/specs-avr2' '-dumpdir' 'CMakeFiles/cmTC_03d75.dir/CMakeCCompilerABI.c.'
+[2/2] Linking C static library libcmTC_03d75.a
+
+
+
+Parsed C implicit include dir info from above output: rv=done
+  found start of include info
+  found start of implicit include info
+    add: [/usr/lib/gcc/avr/11.2.0/include]
+    add: [/usr/lib/gcc/avr/11.2.0/include-fixed]
+    add: [/usr/lib/gcc/avr/11.2.0/../../../../avr/include]
+  end of search list found
+  collapse include dir [/usr/lib/gcc/avr/11.2.0/include] ==> [/usr/lib/gcc/avr/11.2.0/include]
+  collapse include dir [/usr/lib/gcc/avr/11.2.0/include-fixed] ==> [/usr/lib/gcc/avr/11.2.0/include-fixed]
+  collapse include dir [/usr/lib/gcc/avr/11.2.0/../../../../avr/include] ==> [/usr/avr/include]
+  implicit include dirs: [/usr/lib/gcc/avr/11.2.0/include;/usr/lib/gcc/avr/11.2.0/include-fixed;/usr/avr/include]
+
+
+Parsed C implicit link information from above output:
+  link line regex: [^( *|.*[/\])(avr-ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
+  ignore line: [Change Dir: /home/bdreece/Code/github/bdreece/avr-mlx90614/out/CMakeFiles/CMakeTmp]
+  ignore line: []
+  ignore line: [Run Build Command(s):/usr/bin/ninja cmTC_03d75 && [1/2] Building C object CMakeFiles/cmTC_03d75.dir/CMakeCCompilerABI.c.obj]
+  ignore line: [Using built-in specs.]
+  ignore line: [Reading specs from /usr/lib/gcc/avr/11.2.0/device-specs/specs-avr2]
+  ignore line: [COLLECT_GCC=/usr/bin/avr-gcc]
+  ignore line: [Target: avr]
+  ignore line: [Configured with: /build/avr-gcc/src/gcc-11.2.0/configure --disable-install-libiberty --disable-libssp --disable-libstdcxx-pch --disable-libunwind-exceptions --disable-linker-build-id --disable-nls --disable-werror --disable-__cxa_atexit --enable-checking=release --enable-clocale=gnu --enable-gnu-unique-object --enable-gold --enable-languages=c,c++ --enable-ld=default --enable-lto --enable-plugin --enable-shared --infodir=/usr/share/info --libdir=/usr/lib --libexecdir=/usr/lib --mandir=/usr/share/man --prefix=/usr --target=avr --with-as=/usr/bin/avr-as --with-gnu-as --with-gnu-ld --with-ld=/usr/bin/avr-ld --with-plugin-ld=ld.gold --with-system-zlib --with-isl --enable-gnu-indirect-function]
+  ignore line: [Thread model: single]
+  ignore line: [Supported LTO compression algorithms: zlib zstd]
+  ignore line: [gcc version 11.2.0 (GCC) ]
+  ignore line: [COLLECT_GCC_OPTIONS='-O3' '-D' 'NDEBUG' '-v' '-o' 'CMakeFiles/cmTC_03d75.dir/CMakeCCompilerABI.c.obj' '-c' '-mdouble=32' '-mlong-double=64' '-specs=device-specs/specs-avr2' '-dumpdir' 'CMakeFiles/cmTC_03d75.dir/']
+  ignore line: [ /usr/lib/gcc/avr/11.2.0/cc1 -quiet -v -D NDEBUG /usr/share/cmake-3.21/Modules/CMakeCCompilerABI.c -mn-flash=6 -mskip-bug -quiet -dumpdir CMakeFiles/cmTC_03d75.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mdouble=32 -mlong-double=64 -O3 -version -o /tmp/ccpKtOEq.s]
+  ignore line: [GNU C17 (GCC) version 11.2.0 (avr)]
+  ignore line: [	compiled by GNU C version 11.1.0  GMP version 6.2.1  MPFR version 4.1.0  MPC version 1.2.1  isl version isl-0.24-GMP]
+  ignore line: []
+  ignore line: [warning: MPFR header version 4.1.0 differs from library version 4.1.0-p13.]
+  ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+  ignore line: [ignoring nonexistent directory "/usr/lib/gcc/avr/11.2.0/../../../../avr/sys-include"]
+  ignore line: [#include "..." search starts here:]
+  ignore line: [#include <...> search starts here:]
+  ignore line: [ /usr/lib/gcc/avr/11.2.0/include]
+  ignore line: [ /usr/lib/gcc/avr/11.2.0/include-fixed]
+  ignore line: [ /usr/lib/gcc/avr/11.2.0/../../../../avr/include]
+  ignore line: [End of search list.]
+  ignore line: [GNU C17 (GCC) version 11.2.0 (avr)]
+  ignore line: [	compiled by GNU C version 11.1.0  GMP version 6.2.1  MPFR version 4.1.0  MPC version 1.2.1  isl version isl-0.24-GMP]
+  ignore line: []
+  ignore line: [warning: MPFR header version 4.1.0 differs from library version 4.1.0-p13.]
+  ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+  ignore line: [Compiler executable checksum: 90e2d9cdda96869ff5513b5bb6a12cd9]
+  ignore line: [COLLECT_GCC_OPTIONS='-O3' '-D' 'NDEBUG' '-v' '-o' 'CMakeFiles/cmTC_03d75.dir/CMakeCCompilerABI.c.obj' '-c' '-mdouble=32' '-mlong-double=64' '-specs=device-specs/specs-avr2' '-dumpdir' 'CMakeFiles/cmTC_03d75.dir/']
+  ignore line: [ /usr/bin/avr-as -v -mmcu=avr2 -mgcc-isr -o CMakeFiles/cmTC_03d75.dir/CMakeCCompilerABI.c.obj /tmp/ccpKtOEq.s]
+  ignore line: [GNU assembler version 2.37 (avr) using BFD version (GNU Binutils) 2.37]
+  ignore line: [COMPILER_PATH=/usr/lib/gcc/avr/11.2.0/:/usr/lib/gcc/avr/11.2.0/:/usr/lib/gcc/avr/:/usr/lib/gcc/avr/11.2.0/:/usr/lib/gcc/avr/]
+  ignore line: [LIBRARY_PATH=/usr/lib/gcc/avr/11.2.0/:/usr/lib/gcc/avr/11.2.0/../../../../avr/lib/]
+  ignore line: [COLLECT_GCC_OPTIONS='-O3' '-D' 'NDEBUG' '-v' '-o' 'CMakeFiles/cmTC_03d75.dir/CMakeCCompilerABI.c.obj' '-c' '-mdouble=32' '-mlong-double=64' '-specs=device-specs/specs-avr2' '-dumpdir' 'CMakeFiles/cmTC_03d75.dir/CMakeCCompilerABI.c.']
+  ignore line: [[2/2] Linking C static library libcmTC_03d75.a]
+  ignore line: []
+  ignore line: []
+  implicit libs: []
+  implicit objs: []
+  implicit dirs: []
+  implicit fwks: []
+
+
+Detecting CXX compiler ABI info compiled with the following output:
+Change Dir: /home/bdreece/Code/github/bdreece/avr-mlx90614/out/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/ninja cmTC_df721 && [1/2] Building CXX object CMakeFiles/cmTC_df721.dir/CMakeCXXCompilerABI.cpp.obj
+Using built-in specs.
+Reading specs from /usr/lib/gcc/avr/11.2.0/device-specs/specs-avr2
+COLLECT_GCC=/usr/bin/avr-g++
+Target: avr
+Configured with: /build/avr-gcc/src/gcc-11.2.0/configure --disable-install-libiberty --disable-libssp --disable-libstdcxx-pch --disable-libunwind-exceptions --disable-linker-build-id --disable-nls --disable-werror --disable-__cxa_atexit --enable-checking=release --enable-clocale=gnu --enable-gnu-unique-object --enable-gold --enable-languages=c,c++ --enable-ld=default --enable-lto --enable-plugin --enable-shared --infodir=/usr/share/info --libdir=/usr/lib --libexecdir=/usr/lib --mandir=/usr/share/man --prefix=/usr --target=avr --with-as=/usr/bin/avr-as --with-gnu-as --with-gnu-ld --with-ld=/usr/bin/avr-ld --with-plugin-ld=ld.gold --with-system-zlib --with-isl --enable-gnu-indirect-function
+Thread model: single
+Supported LTO compression algorithms: zlib zstd
+gcc version 11.2.0 (GCC) 
+COLLECT_GCC_OPTIONS='-O3' '-D' 'NDEBUG' '-v' '-o' 'CMakeFiles/cmTC_df721.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mdouble=32' '-mlong-double=64' '-specs=device-specs/specs-avr2' '-dumpdir' 'CMakeFiles/cmTC_df721.dir/'
+ /usr/lib/gcc/avr/11.2.0/cc1plus -quiet -v -D NDEBUG /usr/share/cmake-3.21/Modules/CMakeCXXCompilerABI.cpp -mn-flash=6 -mskip-bug -quiet -dumpdir CMakeFiles/cmTC_df721.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mdouble=32 -mlong-double=64 -O3 -version -mn-flash=6 -mskip-bug -fno-rtti -fno-enforce-eh-specs -fno-exceptions -o /tmp/ccY6rTF3.s
+GNU C++17 (GCC) version 11.2.0 (avr)
+	compiled by GNU C version 11.1.0, GMP version 6.2.1, MPFR version 4.1.0, MPC version 1.2.1, isl version isl-0.24-GMP
+
+warning: MPFR header version 4.1.0 differs from library version 4.1.0-p13.
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+ignoring nonexistent directory "/usr/lib/gcc/avr/11.2.0/../../../../avr/include/c++/11.2.0"
+ignoring nonexistent directory "/usr/lib/gcc/avr/11.2.0/../../../../avr/include/c++/11.2.0/avr"
+ignoring nonexistent directory "/usr/lib/gcc/avr/11.2.0/../../../../avr/include/c++/11.2.0/backward"
+ignoring nonexistent directory "/usr/lib/gcc/avr/11.2.0/../../../../avr/sys-include"
+#include "..." search starts here:
+#include <...> search starts here:
+ /usr/lib/gcc/avr/11.2.0/include
+ /usr/lib/gcc/avr/11.2.0/include-fixed
+ /usr/lib/gcc/avr/11.2.0/../../../../avr/include
+End of search list.
+GNU C++17 (GCC) version 11.2.0 (avr)
+	compiled by GNU C version 11.1.0, GMP version 6.2.1, MPFR version 4.1.0, MPC version 1.2.1, isl version isl-0.24-GMP
+
+warning: MPFR header version 4.1.0 differs from library version 4.1.0-p13.
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+Compiler executable checksum: 9cb2f16c79da7ef86be8ef3f5684db76
+COLLECT_GCC_OPTIONS='-O3' '-D' 'NDEBUG' '-v' '-o' 'CMakeFiles/cmTC_df721.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mdouble=32' '-mlong-double=64' '-specs=device-specs/specs-avr2' '-dumpdir' 'CMakeFiles/cmTC_df721.dir/'
+ /usr/bin/avr-as -v -mmcu=avr2 -mgcc-isr -o CMakeFiles/cmTC_df721.dir/CMakeCXXCompilerABI.cpp.obj /tmp/ccY6rTF3.s
+GNU assembler version 2.37 (avr) using BFD version (GNU Binutils) 2.37
+COMPILER_PATH=/usr/lib/gcc/avr/11.2.0/:/usr/lib/gcc/avr/11.2.0/:/usr/lib/gcc/avr/:/usr/lib/gcc/avr/11.2.0/:/usr/lib/gcc/avr/
+LIBRARY_PATH=/usr/lib/gcc/avr/11.2.0/:/usr/lib/gcc/avr/11.2.0/../../../../avr/lib/
+COLLECT_GCC_OPTIONS='-O3' '-D' 'NDEBUG' '-v' '-o' 'CMakeFiles/cmTC_df721.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mdouble=32' '-mlong-double=64' '-specs=device-specs/specs-avr2' '-dumpdir' 'CMakeFiles/cmTC_df721.dir/CMakeCXXCompilerABI.cpp.'
+[2/2] Linking CXX static library libcmTC_df721.a
+
+
+
+Parsed CXX implicit include dir info from above output: rv=done
+  found start of include info
+  found start of implicit include info
+    add: [/usr/lib/gcc/avr/11.2.0/include]
+    add: [/usr/lib/gcc/avr/11.2.0/include-fixed]
+    add: [/usr/lib/gcc/avr/11.2.0/../../../../avr/include]
+  end of search list found
+  collapse include dir [/usr/lib/gcc/avr/11.2.0/include] ==> [/usr/lib/gcc/avr/11.2.0/include]
+  collapse include dir [/usr/lib/gcc/avr/11.2.0/include-fixed] ==> [/usr/lib/gcc/avr/11.2.0/include-fixed]
+  collapse include dir [/usr/lib/gcc/avr/11.2.0/../../../../avr/include] ==> [/usr/avr/include]
+  implicit include dirs: [/usr/lib/gcc/avr/11.2.0/include;/usr/lib/gcc/avr/11.2.0/include-fixed;/usr/avr/include]
+
+
+Parsed CXX implicit link information from above output:
+  link line regex: [^( *|.*[/\])(avr-ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
+  ignore line: [Change Dir: /home/bdreece/Code/github/bdreece/avr-mlx90614/out/CMakeFiles/CMakeTmp]
+  ignore line: []
+  ignore line: [Run Build Command(s):/usr/bin/ninja cmTC_df721 && [1/2] Building CXX object CMakeFiles/cmTC_df721.dir/CMakeCXXCompilerABI.cpp.obj]
+  ignore line: [Using built-in specs.]
+  ignore line: [Reading specs from /usr/lib/gcc/avr/11.2.0/device-specs/specs-avr2]
+  ignore line: [COLLECT_GCC=/usr/bin/avr-g++]
+  ignore line: [Target: avr]
+  ignore line: [Configured with: /build/avr-gcc/src/gcc-11.2.0/configure --disable-install-libiberty --disable-libssp --disable-libstdcxx-pch --disable-libunwind-exceptions --disable-linker-build-id --disable-nls --disable-werror --disable-__cxa_atexit --enable-checking=release --enable-clocale=gnu --enable-gnu-unique-object --enable-gold --enable-languages=c,c++ --enable-ld=default --enable-lto --enable-plugin --enable-shared --infodir=/usr/share/info --libdir=/usr/lib --libexecdir=/usr/lib --mandir=/usr/share/man --prefix=/usr --target=avr --with-as=/usr/bin/avr-as --with-gnu-as --with-gnu-ld --with-ld=/usr/bin/avr-ld --with-plugin-ld=ld.gold --with-system-zlib --with-isl --enable-gnu-indirect-function]
+  ignore line: [Thread model: single]
+  ignore line: [Supported LTO compression algorithms: zlib zstd]
+  ignore line: [gcc version 11.2.0 (GCC) ]
+  ignore line: [COLLECT_GCC_OPTIONS='-O3' '-D' 'NDEBUG' '-v' '-o' 'CMakeFiles/cmTC_df721.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mdouble=32' '-mlong-double=64' '-specs=device-specs/specs-avr2' '-dumpdir' 'CMakeFiles/cmTC_df721.dir/']
+  ignore line: [ /usr/lib/gcc/avr/11.2.0/cc1plus -quiet -v -D NDEBUG /usr/share/cmake-3.21/Modules/CMakeCXXCompilerABI.cpp -mn-flash=6 -mskip-bug -quiet -dumpdir CMakeFiles/cmTC_df721.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mdouble=32 -mlong-double=64 -O3 -version -mn-flash=6 -mskip-bug -fno-rtti -fno-enforce-eh-specs -fno-exceptions -o /tmp/ccY6rTF3.s]
+  ignore line: [GNU C++17 (GCC) version 11.2.0 (avr)]
+  ignore line: [	compiled by GNU C version 11.1.0  GMP version 6.2.1  MPFR version 4.1.0  MPC version 1.2.1  isl version isl-0.24-GMP]
+  ignore line: []
+  ignore line: [warning: MPFR header version 4.1.0 differs from library version 4.1.0-p13.]
+  ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+  ignore line: [ignoring nonexistent directory "/usr/lib/gcc/avr/11.2.0/../../../../avr/include/c++/11.2.0"]
+  ignore line: [ignoring nonexistent directory "/usr/lib/gcc/avr/11.2.0/../../../../avr/include/c++/11.2.0/avr"]
+  ignore line: [ignoring nonexistent directory "/usr/lib/gcc/avr/11.2.0/../../../../avr/include/c++/11.2.0/backward"]
+  ignore line: [ignoring nonexistent directory "/usr/lib/gcc/avr/11.2.0/../../../../avr/sys-include"]
+  ignore line: [#include "..." search starts here:]
+  ignore line: [#include <...> search starts here:]
+  ignore line: [ /usr/lib/gcc/avr/11.2.0/include]
+  ignore line: [ /usr/lib/gcc/avr/11.2.0/include-fixed]
+  ignore line: [ /usr/lib/gcc/avr/11.2.0/../../../../avr/include]
+  ignore line: [End of search list.]
+  ignore line: [GNU C++17 (GCC) version 11.2.0 (avr)]
+  ignore line: [	compiled by GNU C version 11.1.0  GMP version 6.2.1  MPFR version 4.1.0  MPC version 1.2.1  isl version isl-0.24-GMP]
+  ignore line: []
+  ignore line: [warning: MPFR header version 4.1.0 differs from library version 4.1.0-p13.]
+  ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+  ignore line: [Compiler executable checksum: 9cb2f16c79da7ef86be8ef3f5684db76]
+  ignore line: [COLLECT_GCC_OPTIONS='-O3' '-D' 'NDEBUG' '-v' '-o' 'CMakeFiles/cmTC_df721.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mdouble=32' '-mlong-double=64' '-specs=device-specs/specs-avr2' '-dumpdir' 'CMakeFiles/cmTC_df721.dir/']
+  ignore line: [ /usr/bin/avr-as -v -mmcu=avr2 -mgcc-isr -o CMakeFiles/cmTC_df721.dir/CMakeCXXCompilerABI.cpp.obj /tmp/ccY6rTF3.s]
+  ignore line: [GNU assembler version 2.37 (avr) using BFD version (GNU Binutils) 2.37]
+  ignore line: [COMPILER_PATH=/usr/lib/gcc/avr/11.2.0/:/usr/lib/gcc/avr/11.2.0/:/usr/lib/gcc/avr/:/usr/lib/gcc/avr/11.2.0/:/usr/lib/gcc/avr/]
+  ignore line: [LIBRARY_PATH=/usr/lib/gcc/avr/11.2.0/:/usr/lib/gcc/avr/11.2.0/../../../../avr/lib/]
+  ignore line: [COLLECT_GCC_OPTIONS='-O3' '-D' 'NDEBUG' '-v' '-o' 'CMakeFiles/cmTC_df721.dir/CMakeCXXCompilerABI.cpp.obj' '-c' '-mdouble=32' '-mlong-double=64' '-specs=device-specs/specs-avr2' '-dumpdir' 'CMakeFiles/cmTC_df721.dir/CMakeCXXCompilerABI.cpp.']
+  ignore line: [[2/2] Linking CXX static library libcmTC_df721.a]
+  ignore line: []
+  ignore line: []
+  implicit libs: []
+  implicit objs: []
+  implicit dirs: []
+  implicit fwks: []
+
+
