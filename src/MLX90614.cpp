@@ -255,7 +255,7 @@ float mlx90614::MLX90614::get_k_from_temp(float value, enum mlx90614::units unit
 void mlx90614::MLX90614::eep_write(uint8_t addr, uint16_t value)
 {
   uint8_t zeros[2] = { 0x00, 0x00 };
-  uint8_t data[2] = { value & 0x00FF, value >> 7 };
+  uint8_t data[2] = { (uint8_t)(value & 0x00FF), (uint8_t)(value >> 7) };
 
   twi_write(waddr, &addr, 1, NULL);
   twi_wait();
